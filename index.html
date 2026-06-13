@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Um Convite Especial ✨</title>
+<title>Convite Especial ✨</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&display=swap');
 
@@ -412,7 +412,7 @@
         prioridade, e isso conta <strong>muito</strong> pra mim.
       </p>
       <p>
-        Além de que é muito <em>fiu fiu</em> né, quando sorri então misericórdia 😉
+        Além de que é muito <em>fiu fiu</em> né, quando sorri então miseri... 😉
       </p>
       <p>
         Enfim... gostaria de saber se você aceita sair comigo?
@@ -556,12 +556,17 @@ function runAway(){
 }
 
 function moveToRandom(){
-  const btn = document.getElementById('btn-no');
-  const margin = 60;
-  const maxX = window.innerWidth  - btn.offsetWidth  - margin;
-  const maxY = window.innerHeight - btn.offsetHeight - margin;
+  const btn    = document.getElementById('btn-no');
+  const yesBtn = document.querySelector('.btn-yes');
+  const yesTop = yesBtn.getBoundingClientRect().top; // Y position of YES button on screen
+
+  const margin = 20;
+  const maxX = window.innerWidth - btn.offsetWidth - margin;
+  // Stay strictly above the YES button
+  const maxY = yesTop - btn.offsetHeight - margin;
+
   const newX = margin + Math.random() * Math.max(0, maxX);
-  const newY = margin + Math.random() * Math.max(0, maxY);
+  const newY = margin + Math.random() * Math.max(margin, maxY);
   btn.style.left = newX + 'px';
   btn.style.top  = newY + 'px';
   if(noClicks >= 3){
